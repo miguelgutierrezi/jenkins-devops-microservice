@@ -38,6 +38,22 @@ pipeline {
 				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
+		stage('Build Docker image') {
+			steps {
+				// "docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
+				script {
+					dockerImage = docker.build("mgutierrezasw/jenkins-devops-microservice:${env.BUILD_TAG}")
+				}
+			}
+		}
+		stage('Push Docker image') {
+			steps {
+				script {
+					dockerImage.push();
+					dockerImage.push('latest')
+				}
+			}
+		}
 	} 
 	post {
 		always {
