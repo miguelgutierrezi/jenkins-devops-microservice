@@ -1,11 +1,21 @@
+// DECLARATIVE
 node {
-	stage('Build') {
-		echo "Build"
+	agent any
+	stages {
+		stage('Build') {
+			steps {
+				echo "Build"
+			}
 	}
-	stage('Test') {
-		echo "Test"
-	}
-	stage('Integration Test') {
-		echo "Test"
+		stage('Test') {
+			steps {
+				echo "Test"
+			}
+		}
+		stage('Integration Test') {
+			steps {
+				echo "Test"
+			}
+		}
 	}
 }
